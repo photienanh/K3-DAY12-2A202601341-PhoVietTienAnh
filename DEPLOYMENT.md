@@ -12,7 +12,7 @@
 |-----|----------|
 | Họ và tên | Phó Viết Tiến Anh |
 | Mã học viên | 2A202601341 |
-| Repo | https://github.com/photienanh/DAY12-2A202601341-PhoVietTienAnh |
+| Repo | https://github.com/photienanh/K3-DAY12-2A202601341-PhoVietTienAnh |
 
 ## Service
 
