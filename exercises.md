@@ -42,12 +42,12 @@ docker images | grep agent
 
 | Bản | Dung lượng |
 |-----|-----------|
-| 1 stage (bản đầu) | ... MB |
-| Multi-stage | ... MB |
+| 1 stage (bản đầu) | 1.17 GB |
+| Multi-stage | 183 MB |
 
 Giải thích: phần dung lượng chênh lệch đó là những gì?
 
-> *Câu trả lời của bạn*
+> *Phần dung lượng chênh lệch chủ yếu đến từ image `python:3.11` đầy đủ chứa nhiều gói hệ điều hành và công cụ phục vụ build nhưng không cần khi chạy. Bản mới dùng `python:3.11-slim` dependency được cài ở builder và runtime chỉ nhận kết quả trong `/install` nên không mang môi trường build sang image cuối.*
 
 ---
 
@@ -57,7 +57,7 @@ Sửa một ký tự trong `app/main.py` rồi build lại. Với Dockerfile c�
 layer nào được dùng lại từ cache, layer nào phải chạy lại? Nếu bạn đặt
 `COPY . .` lên trước `RUN pip install` thì kết quả khác thế nào?
 
-> *Câu trả lời của bạn*
+> *Khi chỉ sửa `app/main.py`, các layer base image, `WORKDIR`, `COPY requirements.txt`, `pip install` và copy dependency từ builder đều được lấy lại từ cache. Docker chỉ phải chạy lại từ layer `COPY app ./app` trở về sau; `COPY utils ./utils` vẫn có thể dùng cache nếu nội dung `utils` không đổi, sau đó image được export lại. Nếu đặt `COPY . .` trước `RUN pip install`, thay đổi một ký tự trong source sẽ làm layer copy đổi, kéo theo layer cài toàn bộ dependency bị mất cache và phải cài lại dù `requirements.txt` không đổi.*
 
 ---
 
@@ -67,7 +67,7 @@ Container mặc định chạy bằng root. Mô tả chuỗi sự kiện dẫn t
 trong code Python của bạn" tới "kẻ tấn công có quyền cao trên máy host", và
 lệnh `USER` cắt đứt chuỗi đó ở chỗ nào.
 
-> *Câu trả lời của bạn*
+> *Giả sử endpoint Python có lỗ hổng cho phép thực thi lệnh, kẻ tấn công trước tiên chạy được lệnh trong container với quyền của tiến trình ứng dụng. Nếu tiến trình là root, họ có thể sửa mọi file trong container, đọc secret mà root truy cập được và lợi dụng thêm lỗi runtime/kernel hoặc socket/mount cấu hình sai để thoát container; khi đó quyền root làm mức ảnh hưởng trên host rất lớn. Lệnh `USER appuser` cắt chuỗi ngay sau bước thực thi lệnh: mã độc chỉ có UID 10001 không đặc quyền, nên bị giới hạn quyền file và thao tác hệ thống.*
 
 ---
 
