@@ -10,9 +10,9 @@
 
 | Mục | Nội dung |
 |-----|----------|
-| Họ và tên | (điền họ tên) |
-| Mã học viên | (điền mã học viên) |
-| Repo | (điền link repo DAY12-...) |
+| Họ và tên | Phó Viết Tiến Anh |
+| Mã học viên | 2A202601341 |
+| Repo | https://github.com/photienanh/DAY12-2A202601341-PhoVietTienAnh |
 
 ## Service
 
@@ -20,7 +20,7 @@
 |-----|----------|
 | Public URL | https://TODO-thay-bang-url-that.up.railway.app |
 | Platform | Railway / Render / Cloud Run — (điền platform bạn dùng) |
-| Ngày deploy | (điền ngày) |
+| Ngày deploy | 10/08/2026 |
 
 ## Biến Môi Trường Đã Set Trên Cloud
 

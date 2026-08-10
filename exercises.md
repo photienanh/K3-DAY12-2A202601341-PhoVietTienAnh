@@ -6,7 +6,7 @@
 > Cách trả lời: thay dòng `> *Câu trả lời của bạn*` bằng câu trả lời.
 > `grade.py` đếm số câu đã trả lời (15 điểm cho 10 câu).
 >
-> Họ và tên: ..........................  Mã học viên: ..........................
+> Họ và tên: Phó Viết Tiến Anh  Mã học viên: 2A202601341
 
 ---
 
@@ -16,7 +16,7 @@ Trong `Settings`, `agent_api_key` không có giá trị mặc định nên app c
 khi khởi động nếu thiếu biến môi trường. Hãy mô tả một tình huống cụ thể mà
 việc "chết sớm" này cứu bạn, so với việc để mặc định `"changeme"`.
 
-> *Câu trả lời của bạn*
+> *Ví dụ, khi deploy lên Railway mà quên khai báo 'AGENT_APIKEY', ứng dụng sẽ dừng ngay ở bước khởi động và log báo thiếu cấu hình. Nhờ vậy phiên bản lỗi không thể nhận traffic. Nếu có khóa mặc định '"changeme"', service vẫn báo deploy thành công; người ngoài có thể đoán khóa này, gọi API và làm phát sinh chi phí trước khi phát hiện cấu hình sai.*
 
 ---
 
@@ -26,7 +26,7 @@ Chạy service và gọi `/ask` vài lần. Dán một dòng log JSON bạn thu 
 nêu **hai** việc bạn làm được với dòng log đó mà `print("đã trả lời xong")`
 không làm được.
 
-> *Câu trả lời của bạn*
+> *Log JSON thu được: `{"event": "ask_completed", "level": "info", "timestamp": "2026-08-10T03:09:32.671808+00:00", "user_id": "sv01", "cost_usd": 0.0001}`. Từ các trường JSON, tôi có thể nhóm theo `user_id` rồi cộng `cost_usd` để tìm người dùng tiêu nhiều nhất; đồng thời lọc/đếm theo `event` và `level` để tạo dashboard hoặc cảnh báo khi tỷ lệ lỗi tăng. Chuỗi `print("đã trả lời xong")` không chứa dữ liệu có cấu trúc để thực hiện hai việc này.*
 
 ---
 
