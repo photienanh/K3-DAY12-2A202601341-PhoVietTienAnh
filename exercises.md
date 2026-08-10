@@ -78,8 +78,7 @@ phút đồng hồ (reset lúc giây 00), một người dùng có thể gửi t
 request trong 2 giây liên tiếp khi hạn mức là 10/phút? Giải thích cách đạt được
 con số đó.
 
-> *Câu trả lời của bạn*
-
+> *Người dùng có thể gửi tối đa 20 request trong 2 giây: gửi 10 request vào khoảng 10:00:59, sau đó gửi tiếp 10 request vào 10:01:01. Bộ đếm theo phút cố định coi hai nhóm thuộc hai phút khác nhau nên cả hai đều hợp lệ. Sliding window xét đúng 60 giây gần nhất, vì vậy ở 10:01:01 nó vẫn nhìn thấy 10 request lúc 10:00:59 và sẽ chặn nhóm tiếp theo.*
 ---
 
 ### Câu 7 — Rate limit và cost guard (CP3)
@@ -87,7 +86,7 @@ con số đó.
 Hai cơ chế này khác nhau ở điểm nào? Cho một tình huống mà rate limit cho qua
 nhưng cost guard phải chặn, và một tình huống ngược lại.
 
-> *Câu trả lời của bạn*
+> *Rate limit giới hạn tốc độ/số request trong 60 giây, còn cost guard giới hạn tổng số tiền của từng user trong cả tháng. Rate limit có thể cho qua một request thứ nhất trong phút nhưng cost guard phải chặn nếu user đã tiêu hết ngân sách tháng. Ngược lại, một user mới gần như chưa tốn tiền vẫn bị rate limit chặn ở request thứ 11 trong cùng cửa sổ 60 giây, dù cost guard còn rất nhiều ngân sách.*
 
 ---
 
